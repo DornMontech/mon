@@ -1,5 +1,6 @@
  <ul class="nav" id="side-menu">                       
-                        <li>
+      
+    <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
@@ -23,6 +24,18 @@
                         </li>
 						
 						 <li>
-                            <a href="targets.php"><i class="fa fa-wrench fa-fw"></i>Manage targets</a>
-                        </li>
-						</ul>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Manage targets<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="targets.php">Current Target</a>
+                                </li>
+                                <li>
+                                    <a href="pasttargets.php">Past Targets</a>
+                                </li>
+								
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>  
+      
+                      
+</ul>
