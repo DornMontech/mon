@@ -137,7 +137,7 @@ if(isset($_POST['btn-signup'])) {
 										<tbody>
 											<tr>
 												<td class="col-md-2" style="vertical-align: middle">
-													<img class="img-rounded img-responsive center-block" src="../../res/pic/can.png" alt="Cinque Terre" width="50" height="50">
+													<img class="img-rounded img-responsive center-block" src="../../res/pic/wine-glass.png" alt="Cinque Terre" width="50" height="50">
 													<p class="text-center">Wine </p>
 												</td>
 												<td class="col-md-4" style="vertical-align: middle">
