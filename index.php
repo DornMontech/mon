@@ -1,8 +1,7 @@
-# mon
 <?php
-	ob_start();
-	session_start();		
-	?>
+  ob_start();
+  session_start();    
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,11 +36,13 @@
   </head>
 <!-- NAVBAR
 ================================================== -->
-  <body background="res/pic/bottle.png">
+  <body background="res/pic/bbbottles.png" id="bottle" >
+
+
     <nav class="navbar navbar-inverse">
                 <?php
-					include 'nav.php';
-				?>
+          include 'nav.php';
+        ?>
         </nav>
 
      
@@ -49,29 +50,23 @@
       <!-- Body   
     ================================================== -->
     <div class="row clearfix">
-		<div class="col-md-1 column">
-		</div>
-		<div class="col-md-10 column" align = "center">
-		 <h1>
-		 	<font face="rockwell" color = "white">
-		 	Worried about having too many drinks?
-		 	</font>
-		  </h1>
-		  <h2>
-		  	<font face="rockwell" color = "white">
-				Safemeter can help you to…
-				&nbsp;<br/>
-				&nbsp;<br/>
-				&nbsp;<br/>
-				&nbsp;<br/>
-				</font>
-			</h2>
-		</div>
-		<div class="col-md-1 column">
-		
-		</div>
-	</div>
-	
+    <div class="col-md-1 column">
+    </div>
+    <div class="col-md-10 column" align = "center">
+     <h1>
+      </h1>
+      <h2>
+        &nbsp;<br/>
+        &nbsp;<br/>
+        &nbsp;<br/>
+        </font>
+      </h2>
+    </div>
+    <div class="col-md-1 column">
+    
+    </div>
+  </div>
+  
 
 
     <!-- Marketing messaging and featurettes
@@ -83,41 +78,53 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="res/pic/alcohol4.jpeg" alt="Generic placeholder image" width="140" height="140">
-          <h2><font face="rockwell" color = "white"> Drink Limit</h2>
-          <p>Evaluate your health risk <br/>and calories consumed <br/>according to your regular drinks</font></p>
-          <p><a class="btn btn-default" href="suggest.php" role="button">View details &raquo;</a></p>
+          <img class="img-circle" src="res/pic/alcohol4.jpeg" alt="Generic placeholder image" width="140" height="140"  onclick = redirectSuggest() href="suggest.php" =>
+          <h3><font face="rockwell" color = "white"> Did you drink this week?</h3>
+          <p>Check your standard drinks, <br/> calories consumed <br/>and your risk level</font></p>
+          <p><a class="btn btn-default" href="suggest.php" role="button"> Drink Limit </a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="res/pic/salut.jpg" alt="Generic placeholder image" width="140" height="140">
-          <h2><font face="white" color = "white">BAC</h2>
-          <p>Not sure if you exceed the limit? <br/>Calculate your average BAC</font><br/>
-          <font face="rockwell" color = "white">Available on Oct 2016 </font></p>
-          
+          <img class="img-circle" src="res/pic/salut.jpg" alt="Generic placeholder image" width="140" height="140" onclick=redirectBac() href="bac.php">
+          <h3><font face="rockwell" color = "white">Blood Alcohol Consumption</h3>
+          <p> <br/>Calculate your BAC</font><br/><br/></font>
+          <font face="rockwell" color = "white"> </font></p>
+          <p><a class="btn btn-default" href="bac.php" role="button">Get your BAC </a></p>
+
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="res/pic/chart.png" alt="Generic placeholder image" width="140" height="140">
-          <h2><font face="rockwell" color = "white">Track & Goals</h2>
+          <img class="img-circle" src="res/pic/chart.png" alt="Generic placeholder image" width="140" height="140" onclick = redirectDashboard() href="dashboard/pages/index.php">
+          <h3><font face="rockwell" color = "white">Track your drinks</h3>
           <p>Do not wait more and start tracking <br/>your drinks and money. <br/>Also set your goals!</font></p>
-          <p><a class="btn btn-default" href="dashboard/pages/index.php" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-primary" href="dashboard/pages/index.php" role="button"><font >Join us!</font> </a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
 
       
 
-	<!-- /.Body -->
-	</div>
+  <!-- /.Body -->
+  </div>
 
 
       <!-- FOOTER -->
        <?php
-	  include 'footer.php';
-	  ?>
+    include 'footer.php';
+    ?>
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
+    <script type="text/javascript">
+    function redirectSuggest(){
+      window.location.href = "suggest.php";
+    }
+    function redirectBac(){
+      window.location.href = "bac.php";
+    }
+    function redirectDashboard(){
+      window.location.href = "dashboard/pages/index.php";
+    }
+    </script>
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="boostrap/docs/assets/js/vendor/jquery.min.js"><\/script>')</script>
