@@ -264,7 +264,7 @@
 								<div id = "sugg_btn" style="display:none;">
 								
 									<label id = "cal_res" > </label>
-									<a class='btn btn-block btn-warning' href='#cal'>Suggestion and Calorie Burning Information</a>
+									<a class='btn btn-block btn-warning' href='#cal'>Know More</a>
 									</div>
 								</td></tr>
                             </tbody>
@@ -398,28 +398,22 @@
         var bqty = document.getElementById('beerqty').value;
         var bcont = document.getElementById('beercont').value;
         var beerdrink = 0;
-
         var wtype = document.getElementById('winetype').value;
         var wqty = document.getElementById('wineqty').value;
         var wcont = document.getElementById('containerwine').value;
         var winedrink = 0;
-
         var cqty = document.getElementById('chqty').value;
         var ccont = document.getElementById('containerchampagne').value;
         var chdrink = 0;
         chdrink = cqty * ccont;
-
         var sqty = document.getElementById('spiritsqty').value;
         var scont = document.getElementById('spiritscon').value;
         var spdrink = 0;
         spdrink = sqty * scont;
-
         var ptype = document.getElementById('premixtype').value;
         var pqty = document.getElementById('preqty').value;
         var pcont = document.getElementById('containerpremix').value;
         var pdrink = 0;
-
-
         if (btype == 1) {
             if (bcont == 285) {
                 beerdrink = 1.1 * bqty;
@@ -442,7 +436,6 @@
                 beerdrink = 1.2 * bqty;
             }
         }
-
         if (btype == 3) {
             if (bcont == 285) {
                 beerdrink = 0.6 * bqty;
@@ -454,9 +447,7 @@
                 beerdrink = 0.9 * bqty;
             }
         }
-
         //
-
         if (wtype == 1) {
             if (wcont == 100) {
                 winedrink = 1 * wqty;
@@ -479,10 +470,7 @@
                 winedrink = 6.8 * wqty;
             }
         }
-
-
         ///
-
         if (ptype == 1) {
             if (pcont == 250) {
                 pdrink = 1 * pqty;
@@ -497,7 +485,6 @@
                 pdrink = 1.7 * pqty;
             }
         }
-
         if (ptype == 2) {
             if (pcont == 250) {
                 pdrink = 1.9 * pqty;
@@ -512,69 +499,49 @@
                 pdrink = 2.4 * pqty;
             }
         }
-
         var total = beerdrink + winedrink + chdrink + spdrink + pdrink;
-
-
         var trace1 = {
             x: ['Standard Drinks'],
             y: [2],
             name: 'Maximum Limit Per Day',
             type: 'bar'
         };
-
         var trace2 = {
             x: ['Standard Drinks'],
             y: [Number(total)],
             name: 'Your Consumption',
             type: 'bar'
         };
-
         var data = [trace1, trace2];
-
         var layout = { barmode: 'group', bargap: 0.75,
             bargroupgap: 0
         };
-
         Plotly.newPlot('myDiv', data, layout);
-
-
         return total;
-
-
-
     };
-
     function CalculateCal() {
         var btype = document.getElementById('beertype').value;
         var bqty = document.getElementById('beerqty').value;
         var bcont = document.getElementById('beercont').value;
         var beercalories = 0;
-
         var wtype = document.getElementById('winetype').value;
         var wqty = document.getElementById('wineqty').value;
         var wcont = document.getElementById('containerwine').value;
         var winecalories = 0;
-
         var cqty = document.getElementById('chqty').value;
         var ccont = document.getElementById('containerchampagne').value;
         var champagnecalories = 0;
-
         if (ccont = 1.4) { champagnecalories = 121.1 * cqty; }
         else { champagnecalories = 605.59 * cqty; }
-
-
         var sqty = document.getElementById('spiritsqty').value;
         var scont = document.getElementById('spiritscon').value;
         var spiritcalories = 0;
         if (scont = 1) { spiritcalories = 63.4 * sqty; }
         else { spiritcalories = 1481.61 * sqty; }
-
         var ptype = document.getElementById('premixtype').value;
         var pqty = document.getElementById('preqty').value;
         var pcont = document.getElementById('containerpremix').value;
         var predrinkcalories = 0;
-
         if (btype == 1) {
             if (bcont == 285) {
                 beercalories = 102.807 * bqty;
@@ -597,7 +564,6 @@
                 beercalories = 121.835 * bqty;
             }
         }
-
         if (btype == 3) {
             if (bcont == 285) {
                 beercalories = 70.127 * bqty;
@@ -609,9 +575,7 @@
                 beercalories = 104.575 * bqty;
             }
         }
-
         //
-
         if (wtype == 1) {
             if (wcont == 100) {
                 winecalories = 77.4 * wqty;
@@ -634,11 +598,7 @@
                 winecalories = 530.3 * wqty;
             }
         }
-
-
-
         ///
-
         if (ptype == 1) {
             if (pcont == 250) {
                 predrinkcalories = 266.364 * pqty;
@@ -653,7 +613,6 @@
                 predrinkcalories = 468.801 * pqty;
             }
         }
-
         if (ptype == 2) {
             if (pcont == 250) {
                 predrinkcalories = 147.516 * pqty;
@@ -669,22 +628,15 @@
             }
         }
         var totalcalories = beercalories + winecalories + champagnecalories + spiritcalories + predrinkcalories;
-
 		//dorn modified
 		
 		 document.getElementById('sugg_btn').style.display = "block";
 		// document.getElementById('car_res').innerHTML = "The drinking contains : " + totalcalories + "KCal <br/>";
         return totalcalories;
-
     };
-
-
-
-
     function printstd() {
         var std = CalculateStd();
         var ctr = 1;
-
         var totalcalories = CalculateCal();
         var met = document.getElementById('activity').value;
         var weight = document.getElementById('weight').value;
@@ -699,26 +651,17 @@
 		document.getElementById('calorieinfo').innerHTML = Math.round(time) + " Minutes";
 		}
         document.getElementById('calorieConsumed').innerHTML = Math.round(totalcalories) + " KCal";
-
-
-
-
         if (std <= 2) {
-            document.getElementById('dorn').innerHTML = " <ul> <li>You do not exceed the Australian Alcohol Guidelines." + " </li> <li>"
-      + "There are no long term risks associated with this type of drinking.</li> </ul>";
+            document.getElementById('dorn').innerHTML = " <ul> <li>You do not exceed the Australian Alcohol Guidelines of 2 standard drinks per day." + " </li> <li>"
+      + "There are no long term risks associated with this type of drinking.</li> <li>It has been proved that 150-300 minutes of moderate workout reduces cancer </li> <li>Provide your weight and choice of activity and know how long you should workout to burn the drinks you consumed.</li></ul>";
         }
-
         else {
             document.getElementById('dorn').innerHTML = " <ul><li>Long term effects for this type of consumption : </li>"+ 
                 "<li>Cancer - bowel, breast, throat, mouth, liver" + " </li> <li>"
-      + "Liver Disease </li><li>Cardiovascular Diseases </li><li> Stroke</li><li>Mental Health Problems</li></ul>";
+      + "Liver Disease </li><li>Cardiovascular Diseases </li><li> Stroke</li><li>Mental Health Problems</li><li>To know your risk level and alcohol dependency, take the quiz designed based on WHO's Alcohol consumption test</li><br/><div class = 'cl-md-2'><a class='btn btn-primary' href='questionnaire.php'>Take Quiz</a></div></ul>";
         }
-
         document.getElementById('join').innerHTML = "<br/> "+ "<p><b>Wish to track your drinking?</b></p> <br/>" + 
 		"<a class='btn btn-block btn-primary' href='dashboard/pages/index.php'>JOIN US</a>";
-
-
-
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -748,8 +691,6 @@
                         }
                     }
                 });
-
-
             };
       
       
@@ -762,36 +703,30 @@
     $(document).ready(function() {
         $('.btn-number').click(function(e) {
             e.preventDefault();
-
             fieldName = $(this).attr('data-field');
             type = $(this).attr('data-type');
             var input = $("input[name='" + fieldName + "']");
             var currentVal = parseInt(input.val());
             if (!isNaN(currentVal)) {
                 if (type == 'minus') {
-
                     if (currentVal > input.attr('min')) {
                         input.val(currentVal - 1).change();
                     }
                     if (parseInt(input.val()) == input.attr('min')) {
                         $(this).attr('disabled', true);
                     }
-
                 } else if (type == 'plus') {
-
                     if (currentVal < input.attr('max')) {
                         input.val(currentVal + 1).change();
                     }
                     if (parseInt(input.val()) == input.attr('max')) {
                         $(this).attr('disabled', true);
                     }
-
                 }
             } else {
                 input.val(0);
             }
         });
-
         $('input[name=beer]').on('change', function() {
             if ($('input[name=beer]:checked').val() == "fullstrength") {
                 $("#container1none").show()
@@ -837,7 +772,6 @@
                 $("#container2restaurant").hide()
                 $("#container2bottle").hide()
             }
-
         })
         $('input[name=Spirits]').on('change', function() {
             if ($('input[name=Spirits]:checked').val() == "highstrength") {
@@ -876,16 +810,13 @@
                 $("#container3can2").show()
             }
         })
-
         $('.input-number').focusin(function() {
             $(this).data('oldValue', $(this).val());
         });
         $('.input-number').change(function() {
-
             minValue = parseInt($(this).attr('min'));
             maxValue = parseInt($(this).attr('max'));
             valueCurrent = parseInt($(this).val());
-
             name = $(this).attr('name');
             if (valueCurrent >= minValue) {
                 $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
@@ -899,8 +830,6 @@
                 alert('Sorry, the maximum value was reached');
                 $(this).val($(this).data('oldValue'));
             }
-
-
         });
         $(".input-number").keydown(function(e) {
             // Allow: backspace, delete, tab, escape, enter and .
