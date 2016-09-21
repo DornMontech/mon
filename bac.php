@@ -672,12 +672,12 @@
         var time =calculateTime();
         var finalbac = bac - (time * 0.015)
 
-        if ((time * 0.015) >= bac){
-            finalbac = 0;        }
-        if ((time * 0.015) < bac){
-            finalbac = (bac - (time * 0.015)).toFixed(4);
+        //if ((time * 0.015) >= bac){
+          //  finalbac = 0;        }
+        //if ((time * 0.015) < bac){
+            finalbac = (bac - (time * 0.015)).toFixed(5);
            // document.getElementById('bac2').innerHTML = "" + finalbac + "%";
-        }
+        //}
 
         if (finalbac < 0.02 && finalbac > 0){
             document.getElementById('bac2').innerHTML = "" + finalbac + "%";
