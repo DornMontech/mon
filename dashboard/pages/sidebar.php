@@ -20,11 +20,11 @@
                         </li>
 						
 						 <li>
-                            <a href="records.php"><i class="fa fa-database fa-fw"></i>Drinking history</a>
+                            <a href="records.php"><i class="fa fa-glass"></i> Drinking history</a>
                         </li>
 						
 						 <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Manage targets<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Manage targets<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="targets.php">Current Target</a>
@@ -36,6 +36,10 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>  
+					
+						 <li>
+                            <a href="weekly.php"><i class="fa fa-users"></i> Weekly Compare</a>
+                        </li>
       
                       
 </ul>

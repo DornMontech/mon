@@ -27,7 +27,7 @@ ob_start();
 	$start_from = ($page-1) * $num_rec_per_page; 
 	
 	
-	$query = "SELECT * FROM user_drink WHERE user_id ='".$cid."' LIMIT $start_from, $num_rec_per_page";
+	$query = "SELECT * FROM user_drink WHERE user_id ='".$cid."' order by recorded_time desc LIMIT $start_from, $num_rec_per_page";
 	$records = mysql_query($query);
 	
 	
@@ -64,7 +64,7 @@ ob_start();
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	<link rel="icon" href="ico.png"> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

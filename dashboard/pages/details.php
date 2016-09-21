@@ -17,18 +17,48 @@ ob_start();
 	
 	$cid = $userRow["cid"];
 	
-	$num_rec_per_page=5;	
-	if (isset($_GET["page"])){ 
-		$page  = $_GET["page"]; 
+	$num_rec_per_page=10;	
+	if (isset($_GET["userid"])){ 
+		$view_userid  = $_GET["userid"]; 
+		
+		$certain_user_query = mysql_query("SELECT * FROM clients WHERE cid= '".$view_userid."'");
+		$certain_username = mysql_fetch_array($certain_user_query);
+		
 	}
 	else { 
-		$page=1; 
+		header("Location: index.php");
+		exit;
 		} 
-	$start_from = ($page-1) * $num_rec_per_page; 
+
 	
 	
-	$query = "SELECT * FROM target WHERE cid ='".$cid."' AND status <> '0' LIMIT $start_from, $num_rec_per_page";
+	$query = "SELECT * FROM target WHERE cid ='".$view_userid."' AND status = '1' ";
 	$records = mysql_query($query);
+	
+	
+	//comment insert
+	if(isset($_POST['btn-signup'])) {
+  
+		 $comment = trim($_POST['content']);
+		 
+		 $post_user = $_SESSION['user'];
+			
+		 
+		 $comment = strip_tags($comment);
+		 $comment_length = strlen($comment);
+		 
+		 
+		 if ($comment_length < 100 && $comment_length >0) {
+		  
+			  $query = "INSERT INTO comment(user_id,post_time,content,post_username) VALUES('$view_userid',now(),'$comment','$post_user')";
+			  $res = mysql_query($query);
+		 }
+		 else {
+		  $errTyp = "warning";
+		  $errMSG = "The comment should not be empty and no more than 50 characters !"; 
+		 }
+		 
+		}
 	
 	
 	
@@ -71,8 +101,7 @@ ob_start();
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
-	
+
 </head>
 
 <body>
@@ -101,7 +130,7 @@ ob_start();
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Past Target</h1>
+                    <h2 class="page-header"><?php echo $certain_username['cname']; ?> Past Target</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -115,61 +144,65 @@ ob_start();
 								<th>Target Name</th>
 								<th>Budget Limit</th>
 								<th>Cost</th>
-								<th>End Date</th>
+								<th>Achieved Date</th>
 								<th>Status</th>
-										</tr>
-				<?php
-				
-				while ($record = mysql_fetch_assoc($records)) {
+											</tr>
+					<?php
 					
-					$comments = "<font color = 'red'>You exceeded that budget !</font>";
-					if($record['status']== 1)
-					{
-					 $comments = "<font color = 'green'>You succeed !</green>";
-					 }
-					 
+					while ($record = mysql_fetch_assoc($records)) {
+						
+						
+						 $comments = "<font color = 'green'> Achieved!</green>";
+						
+						 
+						
+					echo '<tr>';
+				   
+						echo '<td>' . $record['target_name'] . '</td>';
+						echo '<td> $' . $record['target_money'] . '</td>';
+						echo '<td> $' . $record['current_money'] . '</td>';
+						echo '<td>' . $record['end_date'] .'</td>';		
+						echo '<td>' . $comments .'</td>';
 					
-				echo '<tr>';
-			   
-					echo '<td>' . $record['target_name'] . '</td>';
-					echo '<td> $' . $record['target_money'] . '</td>';
-					echo '<td> $' . $record['current_money'] . '</td>';
-					echo '<td>' . $record['end_date'] .'</td>';		
-					echo '<td>' . $comments .'</td>';
-    
-				echo '</tr>';
-			}
+					echo '</tr>';
+				}
 
-			echo "</table>"; 
+				echo "</table>"; 
 
-			$sql = "SELECT * FROM target WHERE cid ='".$cid."' AND status <> '0'"; 
-			$rs_result = mysql_query($sql); //run the query
-			$total_records = mysql_num_rows($rs_result);  //count number of records
-			$total_pages = ceil($total_records / $num_rec_per_page); 
+				?>
 
-			echo "<a href='pasttargets.php?page=1'>".'|<'."</a> "; // Goto 1st page  
-
-			for ($i=1; $i<=$total_pages; $i++) { 
-						echo "<a href='pasttargets.php?page=".$i."'>".$i."</a> "; 
-			}; 
-			echo "<a href='pasttargets.php?page=$total_pages'>".'>|'."</a> "; // Goto last page
-			?>
-
-			</div>
-			<!--Close the table in HTML--->
+				</div>
+				<!--Close the table in HTML--->
                     </div>
                     <!-- /.panel -->
                 </div>
 				</div>
 				
-				<div class="row">
+				<!--end row -->
+			<div class="row">
+                <div class="col-lg-12">   
+					
+						<form class="form-horizontal" method="post" autocomplete="off">
+						  <div class="form-group">
+							<label for="comment">Your comment (Max length 100):</label> 
+							<input type="text" class="form-control" id="content" name="content" maxlength = "100">
+						  </div>
+							<button type="submit" class="btn btn-primary" name="btn-signup">Submit Comment</button>
+						  
+						</form>
+					
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+				<!--end row -->
+			<div class="row">
                 <div class="col-lg-12">
 					
                     <h2 class="page-header">Recently Comments</h2>
 						<?php
 							//display the comments
 							
-							$comments_query= mysql_query("SELECT * FROM `comment` WHERE `user_id` = '".$cid."' ORDER BY post_time Desc limit 6");
+							$comments_query= mysql_query("SELECT * FROM `comment` WHERE `user_id` = '".$view_userid."' ORDER BY post_time Desc Limit 6");
 							
 							while ($dis_comment = mysql_fetch_assoc($comments_query)) {
 								echo $dis_comment['post_username']. ":" . $dis_comment['content'] ."<hr/>";
@@ -179,8 +212,6 @@ ob_start();
                 </div>
                 <!-- /.col-lg-12 -->
             </div>	
-				
-				
 				
             </div>
     <!-- /#wrapper -->

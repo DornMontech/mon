@@ -31,7 +31,7 @@
 	
 	
 	
-	if(isset($_POST['btn-add'])) {
+/* 	if(isset($_POST['btn-add'])) {
 	  
 	 $targetname = $_POST['tname'];
 	 $target_money = $_POST['budget'];
@@ -62,7 +62,7 @@
 	  } 
 	   
 	 
-}
+} */
 	
 ?>
 
@@ -164,7 +164,7 @@
 									   <li class="well"> <b>Recording Since: <?php echo $userRow["reg_date"];  ?></b></li>
 									   <li  class="well"><b>Number of Drinking times: <?php echo $drink_times;  ?></b></li>
 									   <li  class="well"><b>Total Expenditure: <?php echo $drink_cost;  ?></b></li>									 
-									   <li  class="well"><b>Average standard drinks per time: <?php echo $drink_avg;  ?></b></li>
+									   <!-- <li  class="well"><b>Average standard drinks per time: <?php echo $drink_avg;  ?></b></li> */-->
 								   </ul>
 								</div>
 							<!-- /.panel-body -->
@@ -177,12 +177,49 @@
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<i class="fa fa-dollar fa-fw"></i> Weekly Spending
+									<i class="fa fa-trophy"></i> Target Achivement Top 5 (<a href = "targets.php">check your target</a>)
+									<?php
+									
+									$leading_query="SELECT DISTINCT clients.cname as name, target.cid as id, COUNT(target.target_id) as number FROM clients, target WHERE target.cid = clients.cid and target.status = '1' GROUP by target.cid order by COUNT(target.target_id) DESC LIMIT 5";
+
+									$leadRow=mysql_query($leading_query);
+									
+									?>
+									
+									
 								 
 									</div>
 									<!-- /.panel-heading -->
 									<div class="panel-body">
-									<div id = "cost-barchart"></div>
+									
+									<table class = "table">  
+		  <tr><th>User Name</th>
+		  <th>Achivement Score</th>
+		  <th>View</th>	
+		  </tr>
+			<?php
+			$statement = "You can do it too !";
+			
+			while ($lead = mysql_fetch_assoc($leadRow)) {
+				echo '<tr>';
+			   
+					echo '<td>' . $lead['name'] . '</td>';
+					echo '<td>' . $lead['number'] . '</td>';
+					echo "<td><a href='details.php?userid=".$lead['id']."'>Check Details</a> </td>"; 
+					
+					if($_SESSION['user'] == $lead['name'])
+					{
+						$statement="Good Job ! Your are in the top 5" ;
+					}
+					
+				echo '</tr>';
+			}
+
+			echo "</table>"; ?>
+													
+					<?php
+						echo $statement; ?>
+								<br/>
 								</div>
 							<!-- /.panel-body -->
 							</div>
@@ -282,7 +319,7 @@
 								 
 						// Labels for the ykeys -- will be displayed when you hover over the
 						// chart.
-						labels: ['Stand drink'],
+						labels: ['Standard drinks'],
 						lineColors: ['#0b62a4'],
 						xLabels: 'day',
 						goals: [2.0,],
@@ -324,7 +361,7 @@
 						
 						
 						
-		<!--weeky cost bar chart->
+		/* <!--weeky cost bar chart->
 			Morris.Bar({
 			 element: 'cost-barchart',
 			 data:<?php echo json_encode($total_cost_array);?>,
@@ -335,7 +372,7 @@
 			 
 			 smooth: true,
 			 resize: true
-			});
+			}); */
 						
 				</script>
 				
