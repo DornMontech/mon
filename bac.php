@@ -21,7 +21,7 @@
       <link rel="stylesheet" href="style.css" type="text/css" />
 
    </head>
-   <body>
+   <body onload="hideButton();">
     <nav class="navbar navbar-inverse">
          <?php
             include 'nav.php';
@@ -481,11 +481,9 @@
             </form>
         </div>
     </div>
-</body>
 
-<body onload="hideButton();">
-    
-    </body>
+
+
 
 <script type="text/javascript">
     function hideButton() {
@@ -863,4 +861,6 @@
    <script src="bootstrap/docs/assets/js/vendor/holder.min.js"></script>
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="bootstrap/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
 </html>
