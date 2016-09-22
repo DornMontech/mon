@@ -30,8 +30,9 @@
     <div class="container">
         <div class="container">
             <form name="drink_input" method="Get" action="suggest.php" id='form1'>
-            <div class="row well" style="background-color: #F6F6F6;">
-                <div class="col-md-6">
+			<div class="row well" style="background-color: #F6F6F6;">
+			
+             <div class="col-md-6">
                     <div class="table-responsive clearfix">
                         <table class="table">
                             <caption>
@@ -57,9 +58,11 @@
                                         </div>
                                         <div class="form-group">
                                             <select class="form-control" id="beercont">
-                                                <option value="285">Glass (285 ml)</option>
-                                                <option value="375">Bottle (375 ml)</option>
-                                                <option value="425">Glass (425 ml)</option>
+                                                <option value="200">Glass (200 ml)</option>
+                                                <option value="285">Middy (285 ml)</option>
+                                                <option value="375">Schmiddy (350 ml)</option>
+                                                <option value="425">Schooner (425 ml)</option>
+												 <option value="570">Pint (570 ml)</option>
                                             </select>
                                         </div>
                                     </td>
@@ -234,8 +237,8 @@
                                          <!--<div class=" pull-right">
                                             <input type='button' onclick='CalculateBac()' value='Check' class="btn btn-success btn-sm" />
                                         </div> -->
-                                    </td>
-                                </tr> 
+                                    <!--</td>
+                                </tr> --->
                                 <tr>
                                     <td colspan="2">
                                         <div class=" pull-right">
@@ -245,12 +248,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="clearfix">
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-md-6" style="background-color:#F6F6F6;">
-                            <div class="container">
+                    
+                </div>  <!---/end table-responsive-->
+            </div> <!---/end col6--->
+			
+             <div class="col-md-6" style="background-color:#F6F6F6;">
+                <div class="container">
                                 <div class="row clearfix">
                                     <div class="col-md-5 column">
                                         <h3>
@@ -268,7 +271,6 @@
                                     <div class="col-md-6 column">
                                           </br>
                                     </div>
-
                                     
                                 </div>
                                 <div class="row clearfix">
@@ -336,7 +338,7 @@
                             </div>
                         </div>
 
-                             <div class="container">
+                        <div class="container">
                                 <div class="row clearfix">
                                     <div class="col-md-5 column">
                                         <h3>
@@ -351,7 +353,7 @@
                                          </p>
                                     </div>
                                 </div>
-                                <div class="container">
+                               <div class="container">
                                 <div class="row clearfix">
                                     <div class="col-md-1 column">
                                            </br>   
@@ -411,10 +413,10 @@
                                                     <!-- style="width: 505px; height: 360px;">-->
                                                 </div> 
                                        
-                                                <div id="alcholgrams">
+                                                <div id="hours">
                                                     <!-- style="width: 505px; height: 360px;">-->
                                                 </div> 
-                                                <div id="">
+                                                <div id="minutes">
                                                     <!-- style="width: 505px; height: 360px;">-->
                                                 </div> 
                                                 <div id="bac1">
@@ -483,17 +485,14 @@
     </div>
 
 
-
-
 <script type="text/javascript">
     function hideButton() {
     document.getElementById("myModalButton").style.visibility = "hidden";
 }
-
 </script>
 
 
-</script>
+
 
 <script>
     function CalculateStd() {
@@ -527,6 +526,15 @@
             if (bcont == 425) {
                 beerdrink = 1.6 * bqty;
             }
+			if (bcont == 200) {
+                beerdrink = 0.8 * bqty;
+            }
+			if (bcont == 350) {
+                beerdrink = 1.3 * bqty;
+            }
+			if (bcont == 570) {
+                beerdrink = 2.2 * bqty;
+            }
         }
         if (btype == 2) {
             if (bcont == 285) {
@@ -538,6 +546,15 @@
             if (bcont == 425) {
                 beerdrink = 1.2 * bqty;
             }
+			if (bcont == 200) {
+                beerdrink = 0.6 * bqty;
+            }
+			if (bcont == 350) {
+                beerdrink = 1.0 * bqty;
+            }
+			if (bcont == 570) {
+                beerdrink = 1.6 * bqty;
+            }
         }
         if (btype == 3) {
             if (bcont == 285) {
@@ -548,6 +565,15 @@
             }
             if (bcont == 425) {
                 beerdrink = 0.9 * bqty;
+            }
+			if (bcont == 200) {
+                beerdrink = 0.4 * bqty;
+            }
+			if (bcont == 350) {
+                beerdrink = 0.7 * bqty;
+            }
+			if (bcont == 570) {
+                beerdrink = 1.2 * bqty;
             }
         }
         //
@@ -606,10 +632,7 @@
        
         //document.getElementById('stddrinks').innerHTML = "the standard drinks" + total;
         return total;
-
     };
-
-
     function getAlcoholGrams(){
         var bqty = document.getElementById('beerqty').value;
         var wqty = document.getElementById('wineqty').value;
@@ -618,7 +641,6 @@
         var pqty = document.getElementById('preqty').value;
         var std = CalculateStd();
         var alcholgrs = 0;
-
         if (std == 0){
             $('#myModal').modal('show')
         }
@@ -627,11 +649,9 @@
         }
         return alcholgrs;
     };
-
     function getWeightGender(){
         var bodywgt = document.getElementById('weight').value;
         var sex2 =  $('.radio1:checked').val();
-
         if (bodywgt == 0){
             $('#myModal').modal('show')
         }
@@ -643,14 +663,12 @@
         }
         return bodywgt;
     };
-
     function calculateBacPercentage(){
         var alcoholgrams = getAlcoholGrams();
         var weightgender = getWeightGender();
         var bac = ((alcoholgrams / weightgender) * 100);
         return bac;
     };
-
     function calculateTime(){
         var hours = document.getElementById('hours').value;
         var minutes = document.getElementById('minutes').value;
@@ -659,47 +677,38 @@
             $('#myModal').modal('show')
         }
         else {
-            time = (minutes / 60) + hours;
+            time = (Number(minutes) / 60) + Number(hours);
         }
-        return time;
+        return Number(time);
         
     };
-
     function calculateFinalBac(){
         var bac = calculateBacPercentage();
         var time =calculateTime();
-        var finalbac = bac - (time * 0.015)
-
         //if ((time * 0.015) >= bac){
           //  finalbac = 0;        }
         //if ((time * 0.015) < bac){
             finalbac = (bac - (time * 0.015)).toFixed(5);
            // document.getElementById('bac2').innerHTML = "" + finalbac + "%";
         //}
-
-        if (finalbac < 0.02 && finalbac > 0){
-            document.getElementById('bac2').innerHTML = "" + finalbac + "%";
+        if (finalbac <= 0.02 && finalbac > 0){
+            document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
             document.getElementById('bac1').innerHTML = "With a BAC less than 0.02 you do not have any side effects";
-
         }
-        if (finalbac > 0.02 && finalbac < 0.05){
-            document.getElementById('bac2').innerHTML = "" + finalbac + "%";
+        if (finalbac > 0.02 && finalbac <= 0.05){
+            document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
             document.getElementById('bac1').innerHTML = "With a BAC between 0.02 and 0.05 your ability to see and calculate distances is slightly reduced. Also, your reflexes are slow. With a BAC greater than 0.05 is not legal to drive in Australia!" ;
-
         }
-        if (finalbac > 0.05 && finalbac < 0.08){
-            document.getElementById('bac2').innerHTML = "" + finalbac + "%";
+        if (finalbac > 0.05 && finalbac <= 0.08){
+            document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
             document.getElementById('bac1').innerHTML = "With a BAC greater to 0.05 is twice as likely to have a car accident";
-
         }
         if (finalbac > 0.08 ){
-            document.getElementById('bac2').innerHTML = "" + finalbac + "%";
+            document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
             document.getElementById('bac1').innerHTML = "It is 5 times more risky to have a crash. Call a cab!";
         }
         return finalbac;
     };
-
-
 </script>
 
 <script>
@@ -861,6 +870,5 @@
    <script src="bootstrap/docs/assets/js/vendor/holder.min.js"></script>
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="bootstrap/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-
-</body>
+   </body>
 </html>
