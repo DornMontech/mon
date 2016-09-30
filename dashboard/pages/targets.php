@@ -170,7 +170,7 @@
 									if($today <= $trest["end_date"]){
 										if($current_money > $trest["target_money"]){
 											$status = "You exceed the budget ! Should spend less";
-											$update_targetTable = mysql_query("UPDATE `target` SET `status` = '2' WHERE `target`.`target_id` = '".$trest["target_id"]."'");
+											//$update_targetTable = mysql_query("UPDATE `target` SET `status` = '2' WHERE `target`.`target_id` = '".$trest["target_id"]."'");
 											}	
 									}
 									else {
