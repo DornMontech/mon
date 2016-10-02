@@ -8,7 +8,7 @@
 						   
 						   	<form method="post" autocomplete="off">
 							<div class="col-md-12 clearfix">
-							<div class="col-md-10" style="background-color:#F6F6F6;">
+							<div class="col-md-11" style="background-color:#F6F6F6;">
 								<div class="table-responsive">
 									<table class="table">										
 										 <?php   if ( isset($errMSG) ) {  
