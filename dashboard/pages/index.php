@@ -77,7 +77,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
     <title>Welcome</title>
 
 		
@@ -166,6 +167,102 @@
 									   <li  class="well"><b>Total Expenditure: <?php echo $drink_cost;  ?></b></li>									 
 									   <!-- <li  class="well"><b>Average standard drinks per time: <?php echo $drink_avg;  ?></b></li> */-->
 								   </ul>
+										
+									 <!-------------->
+								    <?php 
+							$today = date("Y-m-d");
+							$userTarget = $userRow['target_no'];
+							if($userTarget == 0)
+							{
+							echo "<br/><h4> You can set your budget limit target    <a href = 'targets.php'>here</a>   </h4>";
+								}
+							else
+							{
+								$tquery = mysql_query("SELECT * FROM `target` WHERE cid ='".$cid."' AND status = '0'");
+								$trest = mysql_fetch_array($tquery);
+									
+								$tcurrent_cost = mysql_query("SELECT SUM(cost) AS sumcost FROM user_drink WHERE user_id ='".$cid."' AND `recorded_time` BETWEEN '".$trest["start_date"]."' AND '".$trest["end_date"]."'");
+								$tresult = mysql_fetch_array($tcurrent_cost);
+								$current_money= $tresult["sumcost"];
+									
+									
+								$update_cost = mysql_query("UPDATE `target` SET `current_money` = '".$current_money."' WHERE `target`.`target_id` = '".$trest["target_id"]."'");
+									//
+									
+								$status = "In Progress ";
+								$today = date("Y-m-d");
+									
+								if($today <= $trest["end_date"]){
+									if($current_money > $trest["target_money"]){
+										$status = "You exceed the budget ! Should spend less";
+										//$update_targetTable = mysql_query("UPDATE `target` SET `status` = '2' WHERE `target`.`target_id` = '".$trest["target_id"]."'");
+										}	
+									}
+									if ($today > $trest["end_date"]){
+										$update_userTable = mysql_query("UPDATE `clients` SET `target_no` = '0' WHERE `clients`.`cid` = '$cid'");
+										if($current_money <= $trest["target_money"] ) 	
+										{									
+											$update_targetTable = mysql_query("UPDATE `target` SET `status` = '1' WHERE `target`.`target_id` = '".$trest["target_id"]."'");
+										}
+										else{
+											$update_targetTable = mysql_query("UPDATE `target` SET `status` = '2' WHERE `target`.`target_id` = '".$trest["target_id"]."'");
+										}
+										}
+									
+										?>	 
+												Money spending on drinking Progress <<a href = "targets.php">details...</a>><br/> <?php 
+												
+												if($current_money >= $trest["target_money"]){
+													$percent = 100;
+													$color = "black";}
+												else{
+												$percent = round(($current_money / $trest["target_money"]) * 100,1);
+												
+												
+												if($percent/100 < 0.4){
+													$color = "green";
+													}
+												else if ($percent/100 < 0.8 && $percent/100 >= 0.4){
+													$color = "yellow";}
+												if($percent/100 >= 0.8){
+													$color = "red";
+													}
+												
+											}						
+									?>
+									
+									<br/>
+										<div class="outer">
+										
+											<div class = "inner"><font color="white"><?php echo round(($current_money / $trest["target_money"]) * 100,1); ?>%</font></div>
+											
+										</div>
+										
+										
+										<style type="text/CSS">
+											.outer{
+												height:25px;
+												width:100%;
+												border:solid 1px #000;									
+												}
+											.inner{
+												height:24px;
+												width:<?php echo $percent ?>%;
+												border-right:solid 1px #000;
+												border-bottom:solid 1px #000;									
+												background-color: <?php echo $color ?>;
+
+												}
+										</style>
+									<?php
+							}
+									?>
+									
+									
+									
+								    <!-------------->	
+										
+										
 								</div>
 							<!-- /.panel-body -->
 							</div>
