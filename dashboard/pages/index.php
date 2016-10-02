@@ -290,16 +290,18 @@
 									<div class="panel-body">
 									
 									<table class = "table">  
-		  <tr><th>User Name</th>
+		  <tr>
+		  <th>Rank</th>
+		  <th>User Name</th>
 		  <th>Achivement Score</th>
 		  <th>View</th>	
 		  </tr>
 			<?php
 			$statement = "You can do it too !";
-			
+			$i=1;
 			while ($lead = mysql_fetch_assoc($leadRow)) {
 				echo '<tr>';
-			   
+			   		echo '<td>  <img src="../../res/pic/'.$i.'.png" ></img></td>';
 					echo '<td>' . $lead['name'] . '</td>';
 					echo '<td>' . $lead['number'] . '</td>';
 					echo "<td><a href='details.php?userid=".$lead['id']."'>Check Details</a> </td>"; 
@@ -310,6 +312,7 @@
 					}
 					
 				echo '</tr>';
+				$i=$i+1;
 			}
 
 			echo "</table>"; ?>
