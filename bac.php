@@ -19,6 +19,7 @@
       <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
       <link href="carousel.css" rel="stylesheet">
       <link rel="stylesheet" href="style.css" type="text/css" />
+      <link rel="icon" href="ico.png">
 
    </head>
    <body onload="hideButton();">
@@ -232,94 +233,51 @@
                                         </div>
                                     </td>
                                 </tr>
-                              <!--    <tr>
-                                     <td colspan="2">
-                                         <!--<div class=" pull-right">
-                                            <input type='button' onclick='CalculateBac()' value='Check' class="btn btn-success btn-sm" />
-                                        </div> -->
-                                    <!--</td>
-                                </tr> --->
-                                <tr>
-                                    <td colspan="2">
-                                        <div class=" pull-right">
-                                            <input type='button' onclick='calculateFinalBac()' value=' Get my BAC' class="btn btn-success btn-lg" />
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     
                 </div>  <!---/end table-responsive-->
             </div> <!---/end col6--->
 			
-             <div class="col-md-6" style="background-color:#F6F6F6;">
-                <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-5 column">
-                                        <h3>
-                                            <font color = "grey" >2. Select your gender</font>
-                                            <hr>
-                                        </h3>
-                                         <p>
-                                         <div id="selectsex">
-                                                </div> 
-                                         </p>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-6 column">
-                                          </br>
-                                    </div>
+             
+            <div class="col-md-6">
+                    <div class="table-responsive clearfix">
+                        <table class="table">
+                            <caption>
+                                <h3>
+                                    <font color = "grey" > 2. Select your gender</font></h3>
+                            </caption>
+                            <tbody>
+                                <tr>
                                     
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-md-1 column">
-                                            <div class="form-group">
-                                            <!-- <select class="form-control" id="sex"> -->
-                                                  
-                                               <!-- <option value="1">Female</option> -->
-                                               <!-- <option value="2">Male</option> -->
-                                           <!--  </select> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 column"> 
-                                    <form id = "mainForm" name ="mainForm" action="form_action.asp" >
-                                <label class="radio-inline">
+                                    <td class="col-md-4" style="vertical-align: middle">
+                                        <form id = "mainForm" name ="mainForm" action="form_action.asp" >
+                                            <label class="radio-inline">
                                     <input type="radio" name="optradio" class = 'radio1' onclick="myFunction(this.value)" value="1" checked="checked">Female&nbsp;&nbsp;&nbsp;&nbsp;
                                     
-                                </label>
+                                            </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="optradio" class = 'radio1' onclick="myFunction(this.value)" value="2">Male
                                 </label>
-                             </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                             <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-5 column">
-                                        <h3>
-                                            <hr>
-                                           <font color ="grey" >
-                                            3. What is your weight?</font>
-                                            <hr>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-6 column">
-                                           
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-md-1 column">
-                                            
-                                    </div>
-                                    <div class="col-md-2 column">
-                                  <div class="input-group">
+                                        </form>
+                                        </br>
+                                        </br>
+                                    </td>
+                                
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <td class="col-md-6" style="vertical-align: middle">
+                                    <h3>
+                                    <font color = "grey" > 3.What is your weight?</font></h3>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    
+                                    <td class="col-md-6" align="center">
+                                      <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[7]">
                                                     <span class="glyphicon glyphicon-minus"></span>
@@ -333,35 +291,22 @@
                                                 </button>
                                             </span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-5 column">
-                                        <h3>
-                                            <hr>
-                                            </br> <font color="grey">
-                                            4. For how long have you been drinking?</font>
-                                            <hr>
-                                        </h3>
-                                        <p>
-                                        <div id="selecttime">
-                                                </div> 
-                                         </p>
-                                    </div>
-                                </div>
-                               <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-1 column">
-                                           </br>   
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-md-2 column">
-                                     <div class="input-group">
+                                    </td>
+                                    <td class="col-md-1"> </td>
+                                    
+                                </tr>
+                               
+                                <tr>
+                                    <td class="col-md-6">
+                                    <h3>
+                                    <font color = "grey" >  4. For how long have you been drinking?</font></h3>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                   
+                                    <td  >
+                                      <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[8]">
                                                     <span class="glyphicon glyphicon-minus"></span>
@@ -376,11 +321,9 @@
                                             </span>
                                         </div>
                                      <h4> hrs. </h4>
-
-                                    </div>
-                                    <div class="col-md-2 column">
-                                        
-                                        <div class="input-group">
+                                    </td>
+                                     <td>
+                                      <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[9]">
                                                     <span class="glyphicon glyphicon-minus"></span>
@@ -395,62 +338,49 @@
                                             </span>
                                         </div>
                                         <h4> min. </h4>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <caption>
-                                <h3>
-                                    BAC Information: &nbsp; <div id="bac2"> </h3> 
-                            </caption>
-                            <tbody>
+                                    </td>
+                                    <td class="col-md-2"> </td>
+                                    
+                                </tr>
+
+                             
+                                <tr>
+                                    <td colspan="2">
+                                        <div class=" pull-right">
+                                            <input type='button' onclick='calculateFinalBac()' value=' Get my BAC' class="btn btn-success btn-lg" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="col-md-6" style="vertical-align: middle">
+                                    <h3>
+                                    <font color = "grey" >  BAC Information  &nbsp; <div id="bac2"></font></h3>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                                 <div id="stddrinks">
-                                                    <!-- style="width: 505px; height: 360px;">-->
+                                        
                                                 </div> 
                                        
                                                 <div id="hours">
-                                                    <!-- style="width: 505px; height: 360px;">-->
+                                                    
                                                 </div> 
                                                 <div id="minutes">
-                                                    <!-- style="width: 505px; height: 360px;">-->
+                                                    
                                                 </div> 
                                                 <div id="bac1">
-                                                    <!-- style="width: 505px; height: 360px;">-->
+                                                    
                                                 </div> 
-                                                <div id="sex2">
-                                                    <!-- style="width: 505px; height: 360px;">-->
-                                                </div>                                    
+                                                                                   
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td>
-                                        <div class="chart-stage">
-                                            <div id="card">
-                                                <div id="myDiv">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>-->
                                 <tr>
-                                <td>
-                                <div id = "sugg_btn" style="display:none;">
-                                
-                                    <label id = "cal_res" > </label>
-                                    <a class='btn btn-block btn-warning' href='#cal'>Suggestion and Calorie Burning Information</a>
-                                    </div>
-                                </td></tr>
-                            </tbody>
-                        </table>
-                         
-                    </div>
+                                <td>     
+                    
                     <div class="clearfix">
-                    <div class="container">
+                   
                       <button  href="#" type="button" class="btn btn-info btn-sm" data-toggle="modal" 
                       data-target="#myModal" id="myModalButton">myModal</button>
                       <!-- Modal -->
@@ -474,14 +404,19 @@
                         </div>
                       </div>
                       
-                    </div>
+                   
 
                     </div>
-                </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                </div>  <!---/end table-responsive-->
             </div>
-
-            </form>
-        </div>
+                
+                
+       </div>
     </div>
 
 
@@ -490,9 +425,6 @@
     document.getElementById("myModalButton").style.visibility = "hidden";
 }
 </script>
-
-
-
 
 <script>
     function CalculateStd() {
@@ -692,7 +624,7 @@
            // document.getElementById('bac2').innerHTML = "" + finalbac + "%";
         //}
         if (finalbac <= 0.02 && finalbac > 0){
-            document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
+            document.getElementById('bac2').innerHTML = "" + finalbac + "%";
             document.getElementById('bac1').innerHTML = "With a BAC less than 0.02 you do not have any side effects";
         }
         if (finalbac > 0.02 && finalbac <= 0.05){
