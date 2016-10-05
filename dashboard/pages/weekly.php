@@ -57,7 +57,7 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+    
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -104,7 +104,29 @@
 
 
         <div id="page-wrapper">
-		
+			<div class="row">
+				<div class = "col-lg-2"></div>
+				<div class = "col-lg-8">
+					<?php
+										$overall_query = mysql_query("SELECT count(*) As times, sum(cost)as scost, avg(std_drink) as avgs FROM `user_drink` WHERE user_id='$cid'");
+										$overall_res = mysql_fetch_array($overall_query);
+										$drink_times = $overall_res["times"];
+										$drink_cost = $overall_res["scost"];
+										$drink_avg = Round($overall_res["avgs"],1);
+										?>
+									
+									
+									<br/>
+									<ul class = "list-group">
+									   <li class="well"> <b>Recording Since: <?php echo $userRow["reg_date"];  ?></b></li>
+									   <li  class="well"><b>Number of Drinking times: <?php echo $drink_times;  ?></b></li>
+									   <li  class="well"><b>Total Expenditure: $ <?php echo $drink_cost;  ?></b></li>									 
+									   <!-- <li  class="well"><b>Average standard drinks per time: <?php echo $drink_avg;  ?></b></li> */-->
+								   </ul>
+								   
+				</div>
+				<div class = "col-lg-2"></div>
+			</div>
 			<div class="row">
                 <div class="col-lg-6">
 							
@@ -147,11 +169,11 @@
 									
 								   <div id ="cost-barchart"></div>
 								
-								<ul class = "list-group">
-									   <li class="well"><b>Your average weekly spend : $<?php echo $user_weekly_avg;  ?></b></li>
-									   <li class="well"><b>Other Users average spend: $<?php echo $all_avg;  ?></b></li>
+								<!--- <ul class = "list-group">
+									   <li class="well"><b>Your average weekly spend : $<?php /* echo $user_weekly_avg;  */ ?></b></li>
+									   <li class="well"><b>Other Users average spend: $<?php /* echo $all_avg; */  ?></b></li>
 									   
-								   </ul>
+								   </ul>  ---->
 					</div>
 							<!-- /.panel-body -->
 							</div>
@@ -196,12 +218,12 @@
 									
 									<div id ="drink-barchart"></div>
 									<br/>
-									<ul class = "list-group">
-									   <li class="well"> <b>Your weekly avarage standard drinks :<?php echo $user_weekly_dr;  ?></b></li>
-									   <li  class="well"><b>Other Users average standard drinks: <?php echo $all_avg_drink;  ?></b></li>
+									<!---<ul class = "list-group">
+									   <li class="well"> <b>Your weekly avarage standard drinks :<?php /* echo $user_weekly_dr; */  ?></b></li>
+									   <li  class="well"><b>Other Users average standard drinks: <?php /* echo $all_avg_drink; */  ?></b></li>
 									   
 								   </ul>
-					
+									---->
 								   <div id ="drink-barchart"></div>
 								</div>
 							<!-- /.panel-body -->
@@ -238,7 +260,7 @@
 			 element: 'cost-barchart',
 			 barGap:30,
 			 barSizeRatio:0.3,
-			 data:[{ y: 'Weekly Spend', a: <?php echo $user_weekly_avg;  ?>, b: <?php echo $all_avg  ?> }],
+			 data:[{ y: 'Weekly Spend $', a: <?php echo $user_weekly_avg;  ?>, b: <?php echo $all_avg  ?> }],
 			 xkey: 'y',
 			 ykeys: ['a','b'],
 			 barColors: ["#339933", "#FFCC33"],
