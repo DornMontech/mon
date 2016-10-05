@@ -264,7 +264,7 @@
 			 xkey: 'y',
 			 ykeys: ['a','b'],
 			 barColors: ["#339933", "#FFCC33"],
-			 labels: ['You', 'Other'],
+			 labels: ['You', 'Others'],
 			 
 			 smooth: true,
 			 resize: true
@@ -281,7 +281,7 @@
 			 xkey: 'y',
 			 ykeys: ['a','b'],
 			 barColors: ["#339933", "#FFCC33"],
-			 labels: ['You', 'Other'],
+			 labels: ['You', 'Others'],
 			 
 			 smooth: true,
 			 resize: true
