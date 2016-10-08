@@ -275,8 +275,8 @@
                                 </tr>
                                 
                                 <tr>
-                                    
-                                    <td class="col-md-6" align="center">
+                                  
+                                    <td class="col-md-3" align="center">
                                       <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[7]">
@@ -305,7 +305,7 @@
                                 
                                 <tr>
                                    
-                                    <td  >
+                                    <td class="col-md-2" >
                                       <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[8]">
@@ -322,7 +322,7 @@
                                         </div>
                                      <h4> hrs. </h4>
                                     </td>
-                                     <td>
+                                     <td class="col-md-3">
                                       <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[9]">
@@ -623,6 +623,10 @@
             finalbac = (bac - (time * 0.015)).toFixed(5);
            // document.getElementById('bac2').innerHTML = "" + finalbac + "%";
         //}
+        if (finalbac <= 0){
+            document.getElementById('bac2').innerHTML = "" + "0" + "%";
+            document.getElementById('bac1').innerHTML = "You do not have any effects";
+        }
         if (finalbac <= 0.02 && finalbac > 0){
             document.getElementById('bac2').innerHTML = "" + finalbac + "%";
             document.getElementById('bac1').innerHTML = "With a BAC less than 0.02 you do not have any side effects";
