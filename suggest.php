@@ -268,16 +268,10 @@
                           </div>
                       </td>
                     </tr>
-                   <tr>
-                       <td>
-                           
-                           <div id = "cal1"></div>
-                            <div id = "dorn"></div>
-                          
-           
-
-                    </td>
+                   <tr>  
+                       <td>    <div id = "dorn"></div></td>
                     </tr>
+                      <tr><td><div id = "cal1"></div></td></tr>
                   </tbody>
                 </table>
               </div>
