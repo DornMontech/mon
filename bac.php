@@ -304,7 +304,6 @@
                                 </tr>
                                 
                                 <tr>
-                                   
                                     <td class="col-md-2" >
                                       <div class="input-group">
                                             <span class="input-group-btn">
@@ -322,7 +321,9 @@
                                         </div>
                                      <h4> hrs. </h4>
                                     </td>
-                                     <td class="col-md-3">
+                </tr>
+                <tr>
+                                     <td class="col-md-1">
                                       <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[9]">
@@ -339,7 +340,7 @@
                                         </div>
                                         <h4> min. </h4>
                                     </td>
-                                    <td class="col-md-2"> </td>
+                                    <td class="col-md-5"> </td>
                                     
                                 </tr>
 
@@ -637,11 +638,11 @@
         }
         if (finalbac > 0.05 && finalbac <= 0.08){
             document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
-            document.getElementById('bac1').innerHTML = "With a BAC greater to 0.05 is twice as likely to have a car accident";
+            document.getElementById('bac1').innerHTML = "With a BAC greater to 0.05 is twice as likely to have a car accident. Call a cab!";
         }
         if (finalbac > 0.08 ){
             document.getElementById('bac2').innerHTML = "" + finalbac + "% ";
-            document.getElementById('bac1').innerHTML = "It is 5 times more risky to have a crash. Call a cab!";
+            document.getElementById('bac1').innerHTML = "Call a cab!";
         }
         return finalbac;
     };
