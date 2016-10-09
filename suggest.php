@@ -1,398 +1,356 @@
 <?php
-   ob_start();
-   session_start();
-   
-   ?>
+  ob_start();
+  session_start();
+  
+  ?>
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <title>Welcome</title>
-      <!-- Bootstrap core CSS -->
-      <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <link href="bootstrap/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-      <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-      <!--<script src="boost/docs/assets/js/ie-emulation-modes-warning.js"></script>-->
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-      <link href="carousel.css" rel="stylesheet">
-      <link rel="stylesheet" href="style.css" type="text/css" />
-   </head>
-   <body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="bootstrap/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="boost/docs/assets/js/ie-emulation-modes-warning.js"></script>-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="icon" href="ico.png">
+  </head>
+  <body onload="hideButton();">
     <nav class="navbar navbar-inverse">
-         <?php
-            include 'nav.php';
-            ?>
-      </nav>
+      <?php
+        include 'nav.php';
+        ?>
+    </nav>
     <div class="container">
-        <div class="container">
-            <form name="drink_input" method="Get" action="suggest.php" id='form1'>
-            <div class="row well" style="background-color: #F6F6F6;">
-                <div class="col-md-6">
-                    <div class="table-responsive clearfix">
-                        <table class="table">
-                            <caption>
-                                <h3>
-                                    Choose how much you drink in a day</h3>
-                            </caption>
-                            <tbody>
-                                <tr>
-                                    <td class="col-md-2" style="vertical-align: middle">
-                                        <img class="img-rounded img-responsive center-block" src="res/pic/beer.png" alt="Cinque Terre"
-                                            width="50" height="50">
-                                        <p class="text-center">
-                                            BEER
-                                        </p>
-                                    </td>
-                                    <td class="col-md-4" style="vertical-align: middle">
-                                        <div class="form-group">
-                                            <select class="form-control" id="beertype">
-                                                <option value="1">Full Strength (4.8%)</option>
-                                                <option value="2">Mid Strength (3.5%)</option>
-                                                <option value="3">Low Strength (2.7%)</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" id="beercont">
-                                                <option value="285">Glass (285 ml)</option>
-                                                <option value="375">Bottle (375 ml)</option>
-                                                <option value="425">Glass (425 ml)</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-3" style="vertical-align: middle">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[1]">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                </button>
-                                            </span>
-                                            <input type="text" name="quant[1]" id="beerqty" class="form-control input-number"
-                                                value="0" min="0" max="100">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[1]">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-2" style="vertical-align: middle">
-                                        <img class="img-rounded img-responsive center-block" src="res/pic/wine-glass.png"
-                                            alt="Cinque Terre" width="50" height="50">
-                                        <p class="text-center">
-                                            WINE</p>
-                                    </td>
-                                    <td class="col-md-4">
-                                        <div class="form-group">
-                                            <select class="form-control" id="winetype">
-                                                <option value="1">Red</option>
-                                                <option value="2">White</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" id="containerwine">
-                                                <option value="100">Standard serve (100 ml)</option>
-                                                <option value="150">Restaurant serve (150 ml)</option>
-                                                <option value="750">Bottle (750 ml)</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-3" style="vertical-align: middle">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                </button>
-                                            </span>
-                                            <input type="text" name="quant[2]" id="wineqty" class="form-control input-number"
-                                                value="0" min="0" max="100">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-2" style="vertical-align: middle">
-                                        <img class="img-rounded img-responsive center-block" src="res/pic/champagne.png"
-                                            alt="Cinque Terre" width="50" height="50">
-                                        <p class="text-center">
-                                            CHAMPAGNE</p>
-                                    </td>
-                                    <td class="col-md-4" style="vertical-align: middle">
-                                        <div class="form-group">
-                                            <p>
-                                            </p>
-                                            <select class="form-control" id="containerchampagne">
-                                                <option value="1.4">Restaurant serve (150 ml)</option>
-                                                <option value="7.1">Bottle (750 ml)</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-3" style="vertical-align: middle">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[3]">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                </button>
-                                            </span>
-                                            <input type="text" id="chqty" name="quant[3]" class="form-control input-number" value="0"
-                                                min="0" max="100">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[3]">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-2" style="vertical-align: middle">
-                                        <img class="img-rounded img-responsive center-block" src="res/pic/glass.png" alt="Cinque Terre"
-                                            width="50" height="50">
-                                        <p class="text-center">
-                                            SPIRITS
-                                        </p>
-                                    </td>
-                                    <td class="col-md-4" style="vertical-align: middle">
-                                        <div class="form-group">
-                                            <p>
-                                            </p>
-                                            <select class="form-control" id="spiritscon">
-                                                <option value="1">Nip (30 ml)</option>
-                                                <option value="22">Bottle (700 ml)</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-3" style="vertical-align: middle">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[4]">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                </button>
-                                            </span>
-                                            <input type="text" id="spiritsqty" name="quant[4]" class="form-control input-number"
-                                                value="0" min="0" max="100">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[4]">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-2" style="vertical-align: middle">
-                                        <img class="img-rounded img-responsive center-block" src="res/pic/can.png" alt="Cinque Terre"
-                                            width="50" height="50">
-                                        <p class="text-center">
-                                            PRE-MIXED
-                                        </p>
-                                    </td>
-                                    <td class="col-md-4" style="vertical-align: middle">
-                                        <div class="form-group">
-                                            <select class="form-control" id="premixtype">
-                                                <option value="1">Full Strength (5%)</option>
-                                                <option value="2">High Strength (7%)</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" id="containerpremix">
-                                                <option value="250">Can (250 ml)</option>
-                                                <option value="300">Can (300 ml)</option>
-                                                <option value="375">Can (375 ml)</option>
-                                                <option value="440">Can (440 ml)</option>
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td class="col-md-3" style="vertical-align: middle">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[5]">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                </button>
-                                            </span>
-                                            <input type="text" name="quant[5]" id="preqty" class="form-control input-number"
-                                                value="0" min="0" max="100">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[5]">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class=" pull-right">
-                                            <input type='button' onclick='printstd()' value='Check' class="btn btn-success btn-sm" />
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="clearfix">
+      <div class="container">
+        <form name="drink_input" method="Get" action="suggest.php" id='form1'>
+          <div class="row well" style="background-color: #F6F6F6;">
+            <div class="col-md-6">
+              <div class="table-responsive clearfix">
+                <table class="table">
+                  <caption>
+                    <h3>
+                      Choose how much you drink in a day
+                    </h3>
+                  </caption>
+                  <tbody>
+                    <tr>
+                      <td class="col-md-2" style="vertical-align: middle">
+                        <img class="img-rounded img-responsive center-block" src="res/pic/beer.png" alt="Cinque Terre"
+                          width="50" height="50">
+                        <p class="text-center">
+                          BEER
+                        </p>
+                      </td>
+                      <td class="col-md-4" style="vertical-align: middle">
+                        <div class="form-group">
+                          <select class="form-control" id="beertype">
+                            <option value="1">Full Strength (4.8%)</option>
+                            <option value="2">Mid Strength (3.5%)</option>
+                            <option value="3">Low Strength (2.7%)</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" id="beercont">
+                            <option value="200">Glass (200 ml)</option>
+                            <option value="285">Middy (285 ml)</option>
+                            <option value="375">Schmiddy (350 ml)</option>
+                            <option value="425">Schooner (425 ml)</option>
+                            <option value="570">Pint (570 ml)</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="col-md-3" style="vertical-align: middle">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[1]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                          </span>
+                          <input type="text" name="quant[1]" id="beerqty" class="form-control input-number"
+                            value="0" min="0" max="100">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[1]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-2" style="vertical-align: middle">
+                        <img class="img-rounded img-responsive center-block" src="res/pic/wine-glass.png"
+                          alt="Cinque Terre" width="50" height="50">
+                        <p class="text-center">
+                          WINE
+                        </p>
+                      </td>
+                      <td class="col-md-4">
+                        <div class="form-group">
+                          <select class="form-control" id="winetype">
+                            <option value="1">Red</option>
+                            <option value="2">White</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" id="containerwine">
+                            <option value="100">Standard serve (100 ml)</option>
+                            <option value="150">Restaurant serve (150 ml)</option>
+                            <option value="750">Bottle (750 ml)</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="col-md-3" style="vertical-align: middle">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                          </span>
+                          <input type="text" name="quant[2]" id="wineqty" class="form-control input-number"
+                            value="0" min="0" max="100">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-2" style="vertical-align: middle">
+                        <img class="img-rounded img-responsive center-block" src="res/pic/champagne.png"
+                          alt="Cinque Terre" width="50" height="50">
+                        <p class="text-center">
+                          CHAMPAGNE
+                        </p>
+                      </td>
+                      <td class="col-md-4" style="vertical-align: middle">
+                        <div class="form-group">
+                          <p>
+                          </p>
+                          <select class="form-control" id="containerchampagne">
+                            <option value="1.4">Restaurant serve (150 ml)</option>
+                            <option value="7.1">Bottle (750 ml)</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="col-md-3" style="vertical-align: middle">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[3]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                          </span>
+                          <input type="text" id="chqty" name="quant[3]" class="form-control input-number" value="0"
+                            min="0" max="100">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[3]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-2" style="vertical-align: middle">
+                        <img class="img-rounded img-responsive center-block" src="res/pic/glass.png" alt="Cinque Terre"
+                          width="50" height="50">
+                        <p class="text-center">
+                          SPIRITS
+                        </p>
+                      </td>
+                      <td class="col-md-4" style="vertical-align: middle">
+                        <div class="form-group">
+                          <p>
+                          </p>
+                          <select class="form-control" id="spiritscon">
+                            <option value="1">Nip (30 ml)</option>
+                            <option value="22">Bottle (700 ml)</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="col-md-3" style="vertical-align: middle">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[4]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                          </span>
+                          <input type="text" id="spiritsqty" name="quant[4]" class="form-control input-number"
+                            value="0" min="0" max="100">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[4]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-2" style="vertical-align: middle">
+                        <img class="img-rounded img-responsive center-block" src="res/pic/can.png" alt="Cinque Terre"
+                          width="50" height="50">
+                        <p class="text-center">
+                          PRE-MIXED
+                        </p>
+                      </td>
+                      <td class="col-md-4" style="vertical-align: middle">
+                        <div class="form-group">
+                          <select class="form-control" id="premixtype">
+                            <option value="1">Full Strength (5%)</option>
+                            <option value="2">High Strength (7%)</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" id="containerpremix">
+                            <option value="250">Can (250 ml)</option>
+                            <option value="300">Can (300 ml)</option>
+                            <option value="375">Can (375 ml)</option>
+                            <option value="440">Can (440 ml)</option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="col-md-3" style="vertical-align: middle">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[5]">
+                          <span class="glyphicon glyphicon-minus"></span>
+                          </button>
+                          </span>
+                          <input type="text" name="quant[5]" id="preqty" class="form-control input-number"
+                            value="0" min="0" max="100">
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[5]">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class=" pull-right">
+                          <input type='button' onclick='printstd()' value='Check' class="btn btn-success btn-sm" />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="clearfix">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="table-responsive">
+                <table class="table">
+                 
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="chart-stage">
+                          <div id="card">
+                            <div id="myDiv">
+                              <!-- style="width: 505px; height: 360px;">-->
+                            </div>
+                          </div>
+                        </div>
+                          <div class="col-md-3">
+                        <div id = "sugg_btn" style="display:none;">
+                         
+                        </div>
+                          </div>
+                      </td>
+                    </tr>
+                   <tr>
+                       <td>
+                           
+                           <div id = "cal1"></div>
+                            <div id = "dorn"></div>
+                          
+           
+
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="clearfix">
+              </div>
+            </div>
+          </div>
+            <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color:#F6F6F6;">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h2>Burn Your Calories</h2>
+                                </div>
+                                <div class="modal-body clearfix">
+                                    <td>
+                      <div class="col-md-6" style="vertical-align: middle">
+                        Select Activity :
+                      </div>
+                      <div class="form-group col-md-6">
+                        <select class="form-control" id="activity">
+                          <option value="6.5">Basket Ball</option>
+                          <option value="7.5">Bicycling - General</option>
+                          <option value="8.5">Bicycling - Mountain</option>
+                          <option value="6.8">Bicycling - Dirt</option>
+                          <option value="12.8">Boxing </option>
+                          <option value="8">Football </option>
+                          <option value="5">Jogging</option>
+                          <option value="6">Running - Slow</option>
+                          <option value="10.5">Running - Moderate</option>
+                          <option value="16">Running - Intense</option>
+                          <option value="7">Skiing</option>
+                          <option value="3.5">Walking</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6" style="vertical-align: middle">
+                        Weight (in KG):
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input class="form-control" id="weight" type="number" min = "10"/>
+                      </div>
+                                        <div class="col-md-6" style="vertical-align: middle">
+                       <input type='button' onclick='printstd()' value='Calculate' class="btn btn-success " />
+                      </div>
+                                        <div class="col-md-6" style="vertical-align: middle">
+                        <h5 id="calorieinfo" class="col-md-2"></h5>
+                      </div>
+                                          
+                                        
+                    </td>
+                                </div>
+                                <div class="modal-footer" style="background-color:#F6F6F6;">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <caption>
-                                <h3>
-                                    Standard Drink Measurement :</h3>
-                            </caption>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="chart-stage">
-                                            <div id="card">
-                                                <div id="myDiv">
-                                                    <!-- style="width: 505px; height: 360px;">-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr><td>
-								<div id = "sugg_btn" style="display:none;">
-								
-									<label id = "cal_res" > </label>
-									<a class='btn btn-block btn-warning' href='#cal'>Know More</a>
-									</div>
-								</td></tr>
-                            </tbody>
-                        </table>
-                         
-                    </div>
-                    <div class="clearfix">
-                    </div>
-                </div>
-            </div>
-			
-			<div class = "row well">
-				<div class = "col-md-12">
-					<table class="table" id = "cal">
-                                                                            <caption>
-                                <h3>
-                                    Risks Involved :</h3>
-                            </caption>
-
-                        <tr>
-                             <td>
-                    <div id="dorn">
-                    </div>                            
-                            </td>
-                       
-                        
-                        
-                                <td>
-                                  
-                                   
-                                        <div id="join">
-                                        </div>
-                                   
-                                </td>
-                            </tr>
-                       </table>
-				
-				
-				</div>
-			</div>
-			
-			
-			
-			
-            <div class="row well">
-                <div class="col-md-12" style="background-color: #F6F6F6;">
-                    <div class="col-md-12" style="vertical-align: middle">
-                        <table class="table">
-                                                    <caption>
-                                <h3>
-                                    Calorie Information :</h3>
-                            </caption>
-                             <tr>
-                                    <td>
-                                        <div class="col-md-6" style="vertical-align: middle">
-                                            Select Sports Type :
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <select class="form-control" id="activity">
-                                                <option value="6.5">Basket Ball</option>
-                                                <option value="7.5">Bicycling - General</option>
-                                                <option value="8.5">Bicycling - Mountain</option>
-                                                <option value="6.8">Bicycling - Dirt</option>
-                                                <option value="12.8">Boxing </option>
-                                                <option value="8">Football </option>
-                                                <option value="5">Jogging</option>
-                                                <option value="13.3">Marathon</option>
-                                                <option value="6">Running - 6 KM/hr</option>
-                                                <option value="8.3">Running - 8 KM/hr</option>
-                                                <option value="9.8">Running - 10 KM/hr</option>
-                                                <option value="10.5">Running - 11 KM/hr</option>
-                                                <option value="11.5">Running - 12 KM/hr</option>
-                                                <option value="11.8">Running - 13 KM/hr</option>
-                                                <option value="12.3">Running - 14 KM/hr</option>
-                                                <option value="14.5">Running - 16 KM/hr</option>
-                                                <option value="16">Running - 18 KM/hr</option>
-                                                <option value="19">Running - 19 KM/hr</option>
-                                                <option value="19.8">Running - 21 KM/hr</option>
-                                                <option value="23">Running - 23 KM/hr</option>
-                                                <option value="7">Skiing</option>
-                                                <option value="3">Walking - 4 KM/hr</option>
-                                                <option value="3.5">Walking - 5 KM/hr</option>
-                                                <option value="4.3">Walking - 6 KM/hr</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6" style="vertical-align: middle">
-                                             Weight (in KG):
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input class="form-control" id="weight" type="number" min = "10"/>
-                                        </div>
-                                    </td>
-                                </tr>
-    <tr>
-                                <td>
-                                    <div class="col-md-2">
-                                        <h5>
-                                           <b> Calories Consumed :</b>
-                                        </h5>
-                                    </div>
-                                    <h5 id="calorieConsumed" class="col-md-2">
-                                    </h5>
-                                    <div class="col-md-2">
-                                        <h5>
-                                            <b> Work out For :</b>
-                                        </h5>
-                                    </div>
-                                    <h5 id="calorieinfo" class="col-md-2">
-                                    </h5>
-                                </td>
-                                    <td colspan="2">
-                                        <div class=" pull-right">
-                                            <input type='button' onclick='printstd()' value='Calculate' class="btn btn-success btn-sm" />
-                                        </div>
-                                    </td>
-                            </tr>
-                        </table>
-                       
-                    </div>
-
-                </div>
-            </div>
-            </form>
-        </div>
+            
+           
+            
+         
+        </form>
+      </div>
     </div>
-</body>
-
-<script>
+  </body>
+    <script type="text/javascript">
+    function showButton() {
+    $("#myModal").modal("show");
+}
+</script>
+  <script>
     function CalculateStd() {
         var btype = document.getElementById('beertype').value;
         var bqty = document.getElementById('beerqty').value;
@@ -424,6 +382,15 @@
             if (bcont == 425) {
                 beerdrink = 1.6 * bqty;
             }
+    if (bcont == 200) {
+                beerdrink = 0.8 * bqty;
+            }
+    if (bcont == 350) {
+                beerdrink = 1.3 * bqty;
+            }
+    if (bcont == 570) {
+                beerdrink = 2.2 * bqty;
+            }
         }
         if (btype == 2) {
             if (bcont == 285) {
@@ -435,6 +402,15 @@
             if (bcont == 425) {
                 beerdrink = 1.2 * bqty;
             }
+    if (bcont == 200) {
+                beerdrink = 0.6 * bqty;
+            }
+    if (bcont == 350) {
+                beerdrink = 1.0 * bqty;
+            }
+    if (bcont == 570) {
+                beerdrink = 1.6 * bqty;
+            }
         }
         if (btype == 3) {
             if (bcont == 285) {
@@ -445,6 +421,15 @@
             }
             if (bcont == 425) {
                 beerdrink = 0.9 * bqty;
+            }
+    if (bcont == 200) {
+                beerdrink = 0.4 * bqty;
+            }
+    if (bcont == 350) {
+                beerdrink = 0.7 * bqty;
+            }
+    if (bcont == 570) {
+                beerdrink = 1.2 * bqty;
             }
         }
         //
@@ -514,7 +499,11 @@
         };
         var data = [trace1, trace2];
         var layout = { barmode: 'group', bargap: 0.75,
-            bargroupgap: 0
+            bargroupgap: 0,width: 400,
+    height: 400, legend: {
+    x: 0,
+    y: 10
+    }
         };
         Plotly.newPlot('myDiv', data, layout);
         return total;
@@ -550,29 +539,56 @@
                 beercalories = 135.272 * bqty;
             }
             if (bcont == 425) {
-                beercalories = 153.309 * bqty;
+               beercalories = 153.309 * bqty;
+            }
+    if (bcont == 200) {
+               beercalories = 72.145 * bqty;
+            }
+    if (bcont == 350) {
+                beercalories = 126.254 * bqty;
+            }
+    if (bcont == 570) {
+               beercalories = 205.614 * bqty;
             }
         }
         if (btype == 2) {
-            if (bcont == 285) {
+             if (bcont == 285) {
                 beercalories = 81.7009 * bqty;
             }
             if (bcont == 375) {
                 beercalories = 107.501 * bqty;
             }
             if (bcont == 425) {
-                beercalories = 121.835 * bqty;
+               beercalories = 121.835 * bqty;
+            }
+    if (bcont == 200) {
+               beercalories = 57.334 * bqty;
+            }
+    if (bcont == 350) {
+                beercalories = 100.334 * bqty;
+            }
+    if (bcont == 570) {
+               beercalories = 163.402 * bqty;
             }
         }
         if (btype == 3) {
-            if (bcont == 285) {
-                beercalories = 70.127 * bqty;
+             if (bcont == 285) {
+                beercalories = 70.126 * bqty;
             }
             if (bcont == 375) {
-                beercalories = 92.272 * bqty;
+                beercalories = 92.271 * bqty;
             }
             if (bcont == 425) {
-                beercalories = 104.575 * bqty;
+               beercalories = 104.575 * bqty;
+            }
+    if (bcont == 200) {
+               beercalories = 49.211 * bqty;
+            }
+    if (bcont == 350) {
+                beercalories = 86.119 * bqty;
+            }
+    if (bcont == 570) {
+               beercalories = 140.252 * bqty;
             }
         }
         //
@@ -628,10 +644,10 @@
             }
         }
         var totalcalories = beercalories + winecalories + champagnecalories + spiritcalories + predrinkcalories;
-		//dorn modified
-		
-		 document.getElementById('sugg_btn').style.display = "block";
-		// document.getElementById('car_res').innerHTML = "The drinking contains : " + totalcalories + "KCal <br/>";
+    //dorn modified
+    
+    document.getElementById('sugg_btn').style.display = "block";
+    // document.getElementById('car_res').innerHTML = "The drinking contains : " + totalcalories + "KCal <br/>";
         return totalcalories;
     };
     function printstd() {
@@ -642,15 +658,20 @@
         var weight = document.getElementById('weight').value;
         var calories = CalculateCal();
         var time = (calories / (weight * met)) * 60
-        if(calories == 0)
-		{
+        if(calories == 0 && time >= 0)
+    {
+        
         document.getElementById('calorieinfo').innerHTML = 0 + " Minutes";
-		}
-		else 
-		{
-		document.getElementById('calorieinfo').innerHTML = Math.round(time) + " Minutes";
-		}
-        document.getElementById('calorieConsumed').innerHTML = Math.round(totalcalories) + " KCal";
+    }
+    else 
+    {
+    document.getElementById('calorieinfo').innerHTML = Math.round(time) + " Minutes";
+    }
+        
+        
+        
+         document.getElementById('cal1').innerHTML = ' <img class="img-rounded img-responsive left-block" src="res/pic/balance.png" alt="Cinque Terre" width="100" height="100"> <h3>'+Math.round(totalcalories)+' Cal</h3>   <input type="button" onclick="showButton()" value="Burn Calories" class="btn btn-success btn-sm" />';
+        
         if (std <= 2) {
             document.getElementById('dorn').innerHTML = " <ul> <li>You do not exceed the Australian Alcohol Guidelines of 2 standard drinks per day." + " </li> <li>"
       + "There are no long term risks associated with this type of drinking.</li> <li>It has been proved that 150-300 minutes of moderate workout reduces cancer </li> <li>Provide your weight and choice of activity and know how long you should workout to burn the drinks you consumed.</li></ul>";
@@ -660,46 +681,17 @@
                 "<li>Cancer - bowel, breast, throat, mouth, liver" + " </li> <li>"
       + "Liver Disease </li><li>Cardiovascular Diseases </li><li> Stroke</li><li>Mental Health Problems</li><li>To know your risk level and alcohol dependency, take the quiz designed based on WHO's Alcohol consumption test</li><br/><div class = 'cl-md-2'><a class='btn btn-primary' href='questionnaire.php'>Take Quiz</a></div></ul>";
         }
-        document.getElementById('join').innerHTML = "<br/> "+ "<p><b>Wish to track your drinking?</b></p> <br/>" + 
-		"<a class='btn btn-block btn-primary' href='dashboard/pages/index.php'>JOIN US</a>";
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Red", "Blue"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [2, std],
-                    backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
-            ],
-                    borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)'
-            ],
-                    borderWidth: 1
-}]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-}]
-                        }
-                    }
-                });
+        
+        
+      
             };
       
       
                    
       
                                 
-</script>
-
-<script>
+  </script>
+  <script>
     $(document).ready(function() {
         $('.btn-number').click(function(e) {
             e.preventDefault();
@@ -848,14 +840,14 @@
         });
     });
              
-</script>
-   <?php
-      include 'footer.php';
-      ?>
-   <script>window.jQuery || document.write('<script src="boostrap/docs/assets/js/vendor/jquery.min.js"><\/script>')</script>
-   <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-   <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-   <script src="bootstrap/docs/assets/js/vendor/holder.min.js"></script>
-   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-   <script src="bootstrap/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </script>
+  <?php
+    include 'footer.php';
+    ?>
+  <script>window.jQuery || document.write('<script src="boostrap/docs/assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="bootstrap/docs/assets/js/vendor/holder.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="bootstrap/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
 </html>
